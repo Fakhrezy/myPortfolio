@@ -20,7 +20,7 @@ window.onscroll = () => {
         let id = sec.getAttribute('id');
 
         if (top >= offset && top < offset + height) {
-            navLinks.forEach.apply(links => {
+            navLinks.forEach(links => {
                 links.classList.remove('active');
                 document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
             })
@@ -50,8 +50,22 @@ ScrollReveal().reveal('.home-contact p, .about-content', {origin:'right'});
 
 // Path: js/typed.js
 const typed = new Typed('.multiple-text', {
-    strings: ['Mahluk Hidup', 'Developer', 'Designer'],
+    strings: ['Network Engineer', 'Developer', 'Designer'],
     typeSpeed: 70,
     backSpeed: 70,
     loop: true
+});
+
+const cards = Array.from(document.querySelectorAll(".card"));
+const cardsContainer = document.querySelector("#cards");
+
+cardsContainer.addEventListener("mousemove", (e) => {
+  for (const card of cards) {
+    const rect = card.getBoundingClientRect();
+    x = e.clientX - rect.left;
+    y = e.clientY - rect.top;
+
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  }
 });
